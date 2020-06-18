@@ -12,7 +12,7 @@
     "server": "nodemon index.js",
     "client": "yarn --cwd client/ start",
     "dev": "concurrently \"yarn server\" \"yarn client\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false yarn --cwd client/ add && yarn --cwd client/ build"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false yarn --cwd client/ install && yarn --cwd client/ build"
   },
   "dependencies": {
     "body-parser": "^1.19.0",

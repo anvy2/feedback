@@ -9,7 +9,6 @@ const Survey = mongoose.model('surveys');
 
 router.post('/api/surveys', logincheck, creditcheck, async (req, res) => {
   const { title, subject, body, recipients } = req.body;
-
   const survey = new Survey({
     title,
     subject,

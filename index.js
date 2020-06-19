@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const { mongoURI, cookieKey } = require('./config/keys');
 
 require('./models/User');
+require('./models/Survey');
 require('./services/passport');
 
 mongoose.connect(mongoURI, {
@@ -15,6 +16,7 @@ mongoose.connect(mongoURI, {
 
 const authRouter = require('./routes/authRoutes');
 const billingRouter = require('./routes/billingRoutes');
+const surveyRouter = require('./routes/surveyRoutes');
 const app = express();
 app.use(bodyParser.json());
 app.use(express.json());
@@ -30,6 +32,7 @@ app.use(passport.session());
 
 app.use(authRouter);
 app.use(billingRouter);
+app.use(surveyRouter);
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));

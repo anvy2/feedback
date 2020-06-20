@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import { withRouter } from 'react-router-dom';
 import formFields from '../../utils/formFields';
 import { submitSurvey } from '../../actions';
+import { useToasts } from 'react-toast-notifications';
 
-const SurveyReview = ({ onCancel, formValues, submitSurvey, history }) => {
+const SurveyReview = ({
+  onCancel,
+  formValues,
+  submitSurvey,
+  history,
+  credits,
+}) => {
+  const { addToast } = useToasts();
   const reviewFields = _.map(formFields, ({ name, label }) => {
     return (
       <div key={name}>
@@ -14,6 +22,10 @@ const SurveyReview = ({ onCancel, formValues, submitSurvey, history }) => {
       </div>
     );
   });
+
+  const renderToast = () => {
+    return null;
+  };
   return (
     <div>
       <h5>Please confirm your entries</h5>
@@ -25,7 +37,13 @@ const SurveyReview = ({ onCancel, formValues, submitSurvey, history }) => {
         Back
       </button>
       <button
-        onClick={() => submitSurvey(formValues, history)}
+        onClick={() => {
+          if (credits < 1) {
+            addToast('Not enough Credits', { appearance: 'warning' });
+          } else {
+            submitSurvey(formValues, history);
+          }
+        }}
         className="green btn-flat right white-text"
         type="submit"
       >
@@ -37,7 +55,10 @@ const SurveyReview = ({ onCancel, formValues, submitSurvey, history }) => {
 };
 
 const mapStateToProps = (state) => {
-  return { formValues: state.form.surveyForm.values };
+  return {
+    formValues: state.form.surveyForm.values,
+    credits: state.auth.credits,
+  };
 };
 
 export default connect(mapStateToProps, { submitSurvey })(

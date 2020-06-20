@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
 import SurveyForm from './surveys/SurveyForm';
 import SurveyReview from './surveys/SurveyFormReview';
+import { ToastProvider } from 'react-toast-notifications';
 
 class SurveyNew extends Component {
   state = { showReview: false };
@@ -17,7 +18,11 @@ class SurveyNew extends Component {
     );
   };
   render() {
-    return <div>{this.renderContent()}</div>;
+    return (
+      <div>
+        <ToastProvider>{this.renderContent()}</ToastProvider>
+      </div>
+    );
   }
 }
 

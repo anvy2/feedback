@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import { withRouter } from 'react-router-dom';
@@ -23,9 +23,6 @@ const SurveyReview = ({
     );
   });
 
-  const renderToast = () => {
-    return null;
-  };
   return (
     <div>
       <h5>Please confirm your entries</h5>
@@ -39,7 +36,10 @@ const SurveyReview = ({
       <button
         onClick={() => {
           if (credits < 1) {
-            addToast('Not enough Credits', { appearance: 'warning' });
+            addToast('Not enough Credits', {
+              appearance: 'warning',
+              autoDismiss: true,
+            });
           } else {
             submitSurvey(formValues, history);
           }

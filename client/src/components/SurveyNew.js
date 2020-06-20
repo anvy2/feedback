@@ -20,7 +20,9 @@ class SurveyNew extends Component {
   render() {
     return (
       <div>
-        <ToastProvider>{this.renderContent()}</ToastProvider>
+        <ToastProvider autoDismissTimeout="2000">
+          {this.renderContent()}
+        </ToastProvider>
       </div>
     );
   }

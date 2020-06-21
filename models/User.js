@@ -9,6 +9,12 @@ const userSchema = new Schema({
     type: Number,
     default: 0,
   },
+  fname: {
+    type: String,
+  },
+  lname: {
+    type: String,
+  },
 });
 
 mongoose.model('users', userSchema);

@@ -18,6 +18,12 @@ class Header extends Component {
 
       default:
         return [
+          <li key="4">
+            <a className="waves-effect white-text btn-flat">
+              <i className="material-icons left">face</i>
+              {this.props.auth.fname}
+            </a>
+          </li>,
           <li key="1">
             <Payments />
           </li>,
@@ -45,7 +51,7 @@ class Header extends Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return { auth: state.auth };
 };
 

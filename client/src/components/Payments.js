@@ -15,7 +15,7 @@ class Payments extends Component {
         }}
         stripeKey={process.env.REACT_APP_STRIPE_KEY}
       >
-        <button className="btn" style={{ margin: '0 0 0 10px' }}>
+        <button className="btn center-block"  >
           Add Credits
         </button>
       </StripeCheckout>

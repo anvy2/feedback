@@ -22,6 +22,12 @@ router.get('/api/surveys', logincheck, async (req, res) => {
   res.send(surveys);
 });
 
+router.delete('/api/surveys/', logincheck, async (req, res) => {
+  const survey = await Survey.findByIdAndDelete(req.body.id);
+  console.log(survey);
+  res.send({});
+});
+
 router.post('/api/surveys/webhooks', (req, res) => {
   const p = new Path('/api/surveys/:surveyId/:choice');
   _.chain(req.body)

@@ -23,3 +23,7 @@ export const fetchSurveys = () => async (dispatch) => {
   const res = await axios.get('/api/surveys');
   dispatch({ type: FETCH_SURVEYS, payload: res.data });
 };
+export const deleteSurvey = (surveyId) => async (dispatch) => {
+  const res = await axios.delete('/api/surveys', { data: { id: surveyId } });
+  dispatch({ type: 'DELETE_SURVEY', payload: res.data });
+};
